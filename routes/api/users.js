@@ -29,6 +29,8 @@ router.post('/register', (req, res) => {
       // Create a new user
       const newUser = new User({
         name: req.body.name,
+        location: req.body.location,
+        phone: req.body.phone,
         email: req.body.email,
         password: req.body.password
       });
@@ -65,10 +67,15 @@ router.post('/login', (req, res) => {
         if (isMatch) {
           // User match, send JSON web token
           // Create a token payload (you can include anything you want)
+          console.log("payload made")
           const payload = {
             id: user.id,
             name: user.name,
-            email: user.email
+            email: user.email,
+            location: user.location,
+            phone: user.phone,
+            itemSell: user.itemSell,
+            itemBuy: user.itemBuy
           };
 
           // Sign token
@@ -91,5 +98,39 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     email: req.user.email
   });
 });
+
+
+//POST api/users/update
+router.post('/profile', (req,res) =>{
+  console.log(req.body)
+  db.User.findByIdAndUpdate(
+    {_id: req.body.user},
+    {location: req.body.loc,
+    phone: req.body.phone},
+    function(err, result) {
+      if(err) {
+        res.send(err);
+      } else {
+        console.log(result);
+        res.send(result);
+      }
+    }
+  )
+})
+
+router.post('/profile/get', (req, res) =>{
+  console.log("where's the data", req.body._id)
+  db.User.findById(
+    {_id: req.body._id},
+    function(err, result) {
+      if(err) {
+        res.send(err);
+      } else {
+        console.log('This is the result', result);
+        res.send(result);
+      }
+    }
+  )
+})
 
 module.exports = router;

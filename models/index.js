@@ -6,7 +6,7 @@ console.log(process.env.MONGO_URI);
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: true
+  useFindAndModify: false
 });
 
 // Mongoose connection object
@@ -22,4 +22,11 @@ db.on('error', (error) => {
   console.log(`Database error\n${error}`);
 });
 
-module.exports.User = require('./User');
+// module.exports.User = require('./User');
+User = require('./User')
+Listing = require('./Listing')
+// var my_schemas = 'User' : require('./User'), require('./Listing');
+module.exports = {
+  User: User,
+  Listing: Listing
+}
