@@ -32,7 +32,8 @@ router.post('/register', (req, res) => {
         location: req.body.location,
         phone: req.body.phone,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        itemSell: ""
       });
 
       // Salt and hash the password, then save the user

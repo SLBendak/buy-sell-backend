@@ -22,6 +22,10 @@ const ListingSchema = new Schema({
         type: String,
         required: true
     },
+    contact: {
+        type: String,
+        required: true
+    },
     seller: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
