@@ -56,8 +56,6 @@ router.post('/delete/:id', (req, res) => {
         res.json(res)
     })
     .catch(console.error)
-    // if(err){ res.json(err) }
-    // else{ res.json('Successfully deleted') }
 })
 
 module.exports = router;
