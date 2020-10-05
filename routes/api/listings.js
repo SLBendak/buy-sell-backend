@@ -16,7 +16,8 @@ router.post('/list', (req, res) => {
             image: req.body.image,
             description: req.body.description,
             category: req.body.category,
-            contact: req.body.contact
+            contact: req.body.contact,
+            price: req.body.price
         })
         newListing.save()
         console.log("new listing", db.Listing)
@@ -37,6 +38,14 @@ router.get('/listid/:id', (req, res) => {
     db.Listing.findById(req.params.id)
     .then(foundItem => {
         res.json(foundItem)
+    })
+    .catch(console.error)
+})
+
+router.get('/userlistings', (req, res) => {
+    db.Listing.find()
+    .then(userList => {
+        res.json(userList)
     })
     .catch(console.error)
 })

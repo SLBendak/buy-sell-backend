@@ -8,8 +8,8 @@ const ListingSchema = new Schema({
         required: true
     },
     image: {
-        type: Buffer,
-        contentType: String
+        type: String,
+        required: true
     },
     description: {
         type: String,
@@ -24,6 +24,10 @@ const ListingSchema = new Schema({
     },
     contact: {
         type: String,
+        required: true
+    },
+    price: {
+        type: Number,
         required: true
     },
     seller: {
