@@ -50,4 +50,14 @@ router.get('/userlistings', (req, res) => {
     .catch(console.error)
 })
 
+router.post('/delete/:id', (req, res) => {
+    db.Listing.findByIdAndRemove(req.params.id)
+    .then(res => {
+        res.json(res)
+    })
+    .catch(console.error)
+    // if(err){ res.json(err) }
+    // else{ res.json('Successfully deleted') }
+})
+
 module.exports = router;
